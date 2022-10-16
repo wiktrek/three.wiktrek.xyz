@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { getFontDefinitionFromManifest } from "next/dist/server/font-utils";
 import Head from "next/head";
 import { useEffect } from "react";
 import * as THREE from "three";
@@ -14,8 +15,23 @@ const Home: NextPage = () => {
     const renderer = new THREE.WebGL1Renderer({
       canvas: document.querySelector("#ez") as Element,
     });
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.render(scene, camera);
+    camera.position.setZ(30);
+    const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+    const material = new THREE.MeshBasicMaterial({
+      color: 0xff6347,
+      wireframe: true,
+    });
+    const torus = new THREE.Mesh(geometry, material);
+    scene.add(torus);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      torus.rotation.x += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
   }, []);
 
   return (
