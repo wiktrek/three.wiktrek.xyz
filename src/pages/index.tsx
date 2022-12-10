@@ -1,12 +1,7 @@
-import { unwatchFile } from "fs";
 import type { NextPage } from "next";
-import { getFontDefinitionFromManifest } from "next/dist/server/font-utils";
-import Head from "next/head";
-import path from "path";
 import { useEffect } from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { any, number } from "zod";
+
 const Home: NextPage = () => {
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -32,6 +27,7 @@ const Home: NextPage = () => {
     const texture = new THREE.TextureLoader().load("/icon.png");
     const material = new THREE.MeshStandardMaterial({ map: texture });
     const cube = new THREE.Mesh(geometry, material);
+    cube.position.y += 5;
     scene.add(cube);
 
     const moonTexture = new THREE.TextureLoader().load("/images/moon.png");
@@ -49,9 +45,9 @@ const Home: NextPage = () => {
     scene.add(pointLight, ambientLight);
 
     // Helpers
-    const lightHelper = new THREE.PointLightHelper(pointLight);
-    const gridHelper = new THREE.GridHelper(200, 50);
-    scene.add(lightHelper, gridHelper);
+    // const lightHelper = new THREE.PointLightHelper(pointLight);
+    // const gridHelper = new THREE.GridHelper(200, 50);
+    // scene.add(lightHelper, gridHelper);
 
     // const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -67,7 +63,19 @@ const Home: NextPage = () => {
       star.position.set(x, y, z);
       scene.add(star);
     }
+    function smallcubes() {
+      const geometry = new THREE.BoxGeometry(2, 2, 2);
+      const material = new THREE.MeshStandardMaterial({ color: 0x676161 });
+      const cube = new THREE.Mesh(geometry, material);
 
+      const [x, y, z] = Array(3)
+        .fill(undefined)
+        .map(() => THREE.MathUtils.randFloatSpread(100));
+
+      cube.position.set(x, y, z);
+      scene.add(cube);
+    }
+    Array(20).fill(undefined).forEach(smallcubes);
     Array(200).fill(undefined).forEach(addStar);
     function animate() {
       requestAnimationFrame(animate);
@@ -75,7 +83,7 @@ const Home: NextPage = () => {
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.005;
       cube.rotation.z += 0.01;
-
+      moon.position.x -= 0.001;
       renderer.render(scene, camera);
     }
     animate();
@@ -84,11 +92,6 @@ const Home: NextPage = () => {
   return (
     <>
       <canvas id="ez" className="fixed top-0 left-0"></canvas>
-      <main className="absolute items-center justify-center text-center">
-        <section className="text-green text-6xl">
-          <a>aaaaaaaaaaaaaaaaa</a>
-        </section>
-      </main>
     </>
   );
 };
