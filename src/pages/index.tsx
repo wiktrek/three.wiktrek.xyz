@@ -91,7 +91,12 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <canvas id="ez" className="fixed top-0 left-0"></canvas>
+      <div className="absolute z-50 text-white">
+        <a>ejejgiesjgijjgiejgiwojrgioaerujhouieuyuoeurouyuehdajgahsjgdah</a>
+        <p>ewgjfoeruiugiw</p>
+        <p>rhuhreuoeoiurihp</p>
+      </div>
+      <canvas id="ez" className="fixed top-0 left-0 z-0"></canvas>
     </>
   );
 };
