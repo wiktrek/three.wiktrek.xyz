@@ -30,14 +30,14 @@ const Home: NextPage = () => {
     cube.position.y += 5;
     scene.add(cube);
 
-    const moonTexture = new THREE.TextureLoader().load("/images/moon.png");
-    const moon = new THREE.Mesh(
-      new THREE.SphereGeometry(3, 32, 32),
-      new THREE.MeshStandardMaterial({ map: moonTexture })
-    );
-    moon.position.set(10, 10, 10);
-    scene.add(moon);
-    // Lights
+    // const moonTexture = new THREE.TextureLoader().load("/images/moon.png");
+    // const moon = new THREE.Mesh(
+    //   new THREE.SphereGeometry(3, 32, 32),
+    //   new THREE.MeshStandardMaterial({ map: moonTexture })
+    // );
+    // moon.position.set(10, 10, 10);
+    // scene.add(moon);
+    // // Lights
     const pointLight = new THREE.PointLight(0xffffff);
     pointLight.position.set(10, 5, 10);
 
@@ -83,7 +83,7 @@ const Home: NextPage = () => {
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.005;
       cube.rotation.z += 0.01;
-      moon.position.x -= 0.001;
+      // moon.position.x -= 0.001;
       renderer.render(scene, camera);
     }
     animate();
