@@ -27,9 +27,19 @@ const Home: NextPage = () => {
     const texture = new THREE.TextureLoader().load("/icon.png");
     const material = new THREE.MeshStandardMaterial({ map: texture });
     const cube = new THREE.Mesh(geometry, material);
-    cube.position.y += 5;
+
     scene.add(cube);
 
+    function animate() {
+      requestAnimationFrame(animate);
+
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.005;
+      cube.rotation.z += 0.01;
+      // moon.position.x -= 0.001;
+      renderer.render(scene, camera);
+    }
+    animate();
     // const moonTexture = new THREE.TextureLoader().load("/images/moon.png");
     // const moon = new THREE.Mesh(
     //   new THREE.SphereGeometry(3, 32, 32),
@@ -58,35 +68,26 @@ const Home: NextPage = () => {
 
       const [x, y, z] = Array(3)
         .fill(undefined)
-        .map(() => THREE.MathUtils.randFloatSpread(100));
+        .map(() => THREE.MathUtils.randFloatSpread(400));
 
       star.position.set(x, y, z);
       scene.add(star);
     }
-    function smallcubes() {
-      const geometry = new THREE.BoxGeometry(2, 2, 2);
-      const material = new THREE.MeshStandardMaterial({ color: 0x676161 });
-      const cube = new THREE.Mesh(geometry, material);
+    function smallspheres() {
+      const geometry = new THREE.SphereGeometry(2, 24, 24);
+      const material = new THREE.MeshStandardMaterial({ color: 0xff4600 });
+      const sphere = new THREE.Mesh(geometry, material);
 
       const [x, y, z] = Array(3)
         .fill(undefined)
-        .map(() => THREE.MathUtils.randFloatSpread(100));
+        .map(() => THREE.MathUtils.randFloatSpread(900));
 
-      cube.position.set(x, y, z);
-      scene.add(cube);
+      sphere.position.set(x, y, z);
+      scene.add(sphere);
     }
-    Array(20).fill(undefined).forEach(smallcubes);
+    Array(20).fill(undefined).forEach(smallspheres);
     Array(200).fill(undefined).forEach(addStar);
-    function animate() {
-      requestAnimationFrame(animate);
 
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.005;
-      cube.rotation.z += 0.01;
-      // moon.position.x -= 0.001;
-      renderer.render(scene, camera);
-    }
-    animate();
     controls.update();
   }, []);
 
