@@ -40,13 +40,6 @@ const Home: NextPage = () => {
       renderer.render(scene, camera);
     }
     animate();
-    // const moonTexture = new THREE.TextureLoader().load("/images/moon.png");
-    // const moon = new THREE.Mesh(
-    //   new THREE.SphereGeometry(3, 32, 32),
-    //   new THREE.MeshStandardMaterial({ map: moonTexture })
-    // );
-    // moon.position.set(10, 10, 10);
-    // scene.add(moon);
     // // Lights
     const pointLight = new THREE.PointLight(0xffffff);
     pointLight.position.set(10, 5, 10);
