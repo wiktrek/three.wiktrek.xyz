@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'three.wiktrek.xyz',
   description: 'App made with three.js',
+  icons: ['/favicon.svg'],
 };
 
 export default function RootLayout({
@@ -16,6 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-background text-text">
+      <head></head>
       <body className={inter.className}>{children}</body>
     </html>
   );
