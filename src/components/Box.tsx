@@ -7,7 +7,6 @@ interface Props {
 export default function Box(props: Props) {
   const [clicked, setClicked] = useState(false);
   function Clicked() {
-    console.log('Clicked');
     setClicked(clicked ? false : true);
   }
   return (
