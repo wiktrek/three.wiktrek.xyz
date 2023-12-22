@@ -2,6 +2,8 @@
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import Box from '~/components/Box';
+
 export default function Home() {
   return (
     <main className="text-xl justify-center items-center h-screen w-screen">
@@ -15,10 +17,10 @@ export default function Home() {
           intensity={Math.PI}
         />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <mesh>
-          <boxGeometry args={[4, 4, 4]} />
-          <meshStandardMaterial />
-        </mesh>
+        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+        <Box position={[0, 0, 0]} />
+        <Box position={[2, 0, 0]} />
+        <Box position={[-2, 0, 0]} />
         <OrbitControls />
       </Canvas>
     </main>
