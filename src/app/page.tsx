@@ -18,9 +18,9 @@ export default function Home() {
         />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <Box position={[0, 0, 0]} />
+        <Box position={[-2, 0, 0]} color="red" />
+        <Box position={[0, 0, 0]} color="green" />
         <Box position={[2, 0, 0]} />
-        <Box position={[-2, 0, 0]} />
         <OrbitControls />
       </Canvas>
     </main>
