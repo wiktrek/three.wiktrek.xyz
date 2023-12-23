@@ -5,7 +5,7 @@ Command: npx gltfjsx@6.2.16 model.glb -t
 
 import * as THREE from 'three';
 import React, { useRef } from 'react';
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, useHelper } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 
 type ActionName = 'actionNameOne' | 'actionNameTwo';
@@ -29,14 +29,16 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/models/model.glb') as GLTFResult;
   return (
     <group {...props} dispose={null}>
+      {/* <ambientLight intensity={Math.PI} /> */}
+      <pointLight position={[4, 1, 0]} intensity={Math.PI} />
+      <pointLight position={[4, -1, 0]} intensity={Math.PI} />
       <mesh
-        position={[0, 1, 0]}
+        position={[4, 0, 0]}
         geometry={nodes.Torus002.geometry}
         material={nodes.Torus002.material}
         material-color={'orange'}
-        scale={0.998}
+        scale={1}
       />
-      <spotLight />
     </group>
   );
 }
