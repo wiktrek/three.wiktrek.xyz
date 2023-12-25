@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import React, { useRef, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
-import { HexColorPicker } from 'react-colorful';
+
 type GLTFAction = any;
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,27 +21,7 @@ type ContextType = Record<
   string,
   React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>
 >;
-export default function Cup() {
-  return (
-    <>
-      <Model />
-    </>
-  );
-}
-function Picker() {
-  const color = useState('');
-  return (
-    <div style={{ display: snap.current ? 'block' : 'none' }}>
-      <HexColorPicker
-        className="picker"
-        color={snap.items[snap.current]}
-        onChange={(color) => (state.items[snap.current] = color)}
-      />
-    </div>
-  );
-}
-
-export function Model(props: JSX.IntrinsicElements['group']) {
+export default function Model(props: { color: string }) {
   const { nodes, materials } = useGLTF('/models/cup.glb') as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -56,9 +36,9 @@ export function Model(props: JSX.IntrinsicElements['group']) {
       <mesh
         geometry={nodes.Cylinder.geometry}
         material={nodes.Cylinder.material}
-        position={[0, 2, 0]}
+        position={[0, 0, -2]}
       >
-        <meshPhysicalMaterial color="hotpink" />
+        <meshPhysicalMaterial color={props.color} />
       </mesh>
     </group>
   );
