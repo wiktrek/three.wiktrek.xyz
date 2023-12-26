@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const [color, setColor] = useState('#99ff99');
+
   function Picker() {
     return (
       <HexColorPicker

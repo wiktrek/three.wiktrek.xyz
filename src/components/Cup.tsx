@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import React, { useRef, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
-
+import { useToast } from '~/components/ui/use-toast';
 type GLTFAction = any;
 type GLTFResult = GLTF & {
   nodes: {
@@ -23,6 +23,7 @@ type ContextType = Record<
 >;
 export default function Model(props: { color: string }) {
   const { nodes, materials } = useGLTF('/models/cup.glb') as GLTFResult;
+  const { toast } = useToast();
   return (
     <group {...props} dispose={null}>
       <ambientLight intensity={0.7} />
@@ -37,6 +38,12 @@ export default function Model(props: { color: string }) {
         geometry={nodes.Cylinder.geometry}
         material={nodes.Cylinder.material}
         position={[0, 0, -2]}
+        onClick={() => {
+          toast({
+            description: 'Clicked!',
+            duration: 500,
+          });
+        }}
       >
         <meshPhysicalMaterial color={props.color} />
       </mesh>
