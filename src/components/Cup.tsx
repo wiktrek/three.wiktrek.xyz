@@ -37,7 +37,8 @@ export default function Model(props: { color: string }) {
       <mesh
         geometry={nodes.Cylinder.geometry}
         material={nodes.Cylinder.material}
-        position={[0, 0, -2]}
+        position={[5, 2, -2]}
+        scale={0.3}
         onClick={() => {
           toast({
             description: 'Clicked!',

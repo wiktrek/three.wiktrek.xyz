@@ -12,15 +12,13 @@ export default function Home() {
 
   function Picker() {
     return (
-      <HexColorPicker
-        className="absolute top-0 left-0"
-        color={color}
-        onChange={(c) => setColor(c)}
-      />
+      <div className="absolute bottom-0 left-0">
+        <HexColorPicker color={color} onChange={(c) => setColor(c)} />
+      </div>
     );
   }
   return (
-    <main className="flex text-xl justify-center items-center h-screen w-screen overflow-hidden">
+    <main className="text-xl justify-center items-center h-screen w-screen overflow-hidden relative">
       <Canvas camera={{ fov: 60 }}>
         <hemisphereLight args={['#fff', '#333', 5]} />
         <color attach="background" args={['#05080a']} />
@@ -30,6 +28,7 @@ export default function Home() {
         <Cup color={color} />
         <OrbitControls />
       </Canvas>
+
       <Picker />
     </main>
   );
