@@ -16,6 +16,7 @@
     "@react-three/postprocessing": "^2.15.11",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "jotai": "^2.6.1",
     "lucide-react": "^0.302.0",
     "next": "14.0.4",
     "react": "^18.2.0",
