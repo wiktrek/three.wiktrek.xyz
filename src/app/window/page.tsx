@@ -1,27 +1,35 @@
-'use client';
 interface Window {
   id: number;
 }
 import * as THREE from 'three';
 import { useEffect, useRef, useState } from 'react';
-import { Provider, atom, createStore, getDefaultStore, useAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
+import { Metadata } from 'next';
 
-const store = getDefaultStore();
-// const windowAtom = atomWithStorage('windows', [] as Window[]);
-const windowAtom = atom([] as Window[]);
-const sub = store.sub(windowAtom, () => {
-  console.log(store);
-});
+const id = Math.random();
+const windowAtom = atomWithStorage('windows', [
+  {
+    id: id,
+  },
+] as Window[]);
+export const metadata: Metadata = {
+  title: 'sync windows - wiktrek.xyz',
+  description: 'App made with three.js',
+  icons: ['/favicon.svg'],
+};
 
 export default function Home() {
-  const [windows, setWindows] = useAtom(windowAtom);
-  const [color, setColor] = useState('#99ff99');
+  'use client';
+  // const [windows, setWindows] = useAtom(windowAtom);
+
+  // console.log(windows);
+
   return (
-    <Provider store={store}>
-      <div className="text-xl justify-center items-center h-screen w-screen overflow-hidden relative">
-        <p>wiktrek</p>
+    <main className="text-xl justify-center items-center h-screen w-screen overflow-hidden relative">
+      <div>
+        <a>wiktrek</a>
       </div>
-    </Provider>
+    </main>
   );
 }
